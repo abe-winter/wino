@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html><body>
+<link rel="stylesheet" type="text/css" href="wino.css">
+
+Testing page for <b>WINO</b>.
+<br>
+Select either line in the box and watch it de-format.
+
+<script src="wino.js"></script>
+<script src="tags.js"></script>
+<script>
+"use strict";
+var wino = new Wino(renderTags);
+var sample_string = "#cirrhosis is a serious disease in the industrialized west.\nwhatever, nothing a #dram can't cure";
+var elt = wino.render(sample_string);
+document.body.appendChild(elt);
+</script>
+</body></html>
