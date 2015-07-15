@@ -1,0 +1,48 @@
+swapper {
+  display: block;
+  position: relative;
+}
+
+.swap-text {
+  display: block;
+  font-family: sans-serif;
+  white-space: pre-wrap;
+  font-size: 14px;
+  z-index: 20;
+  padding: 10px;
+  width: 100%;
+  border: none;
+  box-sizing: border-box;
+  background: white;
+  outline: none;
+  overflow: hidden;
+  resize: none;
+  /* fixes margin 1px textarea issue on FF */
+  margin: 0;
+}
+
+textarea.swap-text {position:absolute;}
+
+swapper-view {
+  /* i.e. 1em + 2 * padding */
+  min-height:calc(1em + 20px);
+  /* this is 30 when textarea is blurred, 10 when focused */
+  z-index: 30;
+  /* clicks get passed to text element underneath */
+  pointer-events: none;
+  position: relative;
+}
+
+swapper-view div {padding:0;}
+
+wino {
+  display: block;
+  padding: 10px;
+  margin: 4px;
+  border: solid 1px #ccc;
+  width: 300px;
+}
+
+/* special swapper rules under wyriwyg */
+wino > swapper > .swap-text {padding: 0; min-height:calc(1em); font-size: 16px;}
+wino > swapper {margin-bottom: 4px;}
