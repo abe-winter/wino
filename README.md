@@ -32,6 +32,10 @@ vs specific projects:
 
 ## demo
 
+[hashtags demo](https://abe-winter.github.io/wino/tags.htm)
+
+or ...
+
 1. clone the repo `&& cd wino`
 1. `npm install && npm run build`
 1. `cd examples`, then
