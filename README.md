@@ -1,7 +1,5 @@
 # WINO
 
-![James Doyle, a prominent example of the type, at a low point in his run](static/james-doyle-mugshot.jpg)
-
 wysiwyg in name only. Wino provides the `<wino>` element:
 * a multiline auto-height editor
 * the focused line is rendered as plaintext
@@ -25,3 +23,5 @@ coming soon
 ## npm package
 
 coming soon
+
+![James Doyle, a prominent example of the type, at a low point in his run](static/james-doyle-mugshot.jpg)
