@@ -44,7 +44,9 @@ or ...
 
 ## npm package
 
-too soon
+```bash
+npm install git+https://github.com/abe-winter/wino.git
+```
 
 ## mascot
 
