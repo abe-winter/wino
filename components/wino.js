@@ -7,10 +7,6 @@ This provides the Wino class.
 
 // todo: dirty flag and setClean function.
 
-var
-  h = require('hyperscript'),
-  log = require('loglevel');
-
 var swapper = require('./swapper');
 
 /**
@@ -52,7 +48,7 @@ Wino.prototype.activeSwapperIndex = function(){
 
 Wino.prototype.onkey = function(event){
   if (event.target.tagName != 'TEXTAREA'){
-    log.warn('Wino.onkey target tag not textarea');
+    console.warn('Wino.onkey target tag not textarea');
     return;
   }
   switch (event.keyCode){
@@ -177,12 +173,12 @@ Wino.prototype.render = function(text){
   var this_ = this;
   var elts = [];
   var extraEvents = this.extraEvents();
+  var node = this.node = document.createElement('wino');
   this.swappers = text.split('\n').map(function(line){
     var swap = new swapper.Swapper(this_.renderer);
-    elts.push(swap.render(line, extraEvents));
+    node.appendChild(swap.render(line, extraEvents));
     return swap;
   });
-  this.node = h('wino', elts);
   return this.node;
 }
 

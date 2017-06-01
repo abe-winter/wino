@@ -6,11 +6,7 @@
 // todo: look for replacements here: https://github.com/yumyo/js-type-master
 // todo: handle browser resize events
 
-var
-  h = require('hyperscript'),
-  log = require('loglevel'),
-  _defer = require('lodash/function/defer'),
-  _merge = require('lodash/object/merge');
+var _defer = require('lodash/function/defer');
 
 /**
 remove all childNodes
@@ -42,6 +38,14 @@ function Swapper(renderer){
   this.active = false;
 }
 
+// in theory same thing as lodash merge, but that's 40k
+function merge(dict1, dict2){
+  var ret = new Object;
+  Object.keys(dict1).map(function(k){ret[k] = dict1[k];});
+  Object.keys(dict2).map(function(k){ret[k] = dict2[k];});
+  return ret;
+}
+
 /**
 @param {string} text
 @param {Object} extraEvents - Wyri uses this to pass in keydown handlers
@@ -49,17 +53,17 @@ function Swapper(renderer){
 */
 Swapper.prototype.render = function(text, extraEvents){
   extraEvents = extraEvents || {};
-  this.node = h('swapper',
-    h('textarea.swap-text',
-      _merge(extraEvents, {
-        oninput: this.oninput.bind(this),
-        onfocus: this.onfocus.bind(this),
-        onblur: this.onblur.bind(this)
-      }),
-      text
-    ),
-    h('swapper-view.swap-text')
-  );
+  var node = this.node = document.createElement('swapper');
+  node.innerHTML = '<textarea class="swap-text"></textarea><swapper-view class="swap-text"></swapper-view>';
+  var handlers = merge(extraEvents, {
+    oninput: this.oninput.bind(this),
+    onfocus: this.onfocus.bind(this),
+    onblur: this.onblur.bind(this)
+  });
+  Object.keys(handlers).map(function(k){
+    node.firstChild[k] = handlers[k];
+  });
+  node.firstChild.value = text;
   this.oninput(null);
   return this.node;
 }
